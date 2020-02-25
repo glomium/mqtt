@@ -5,7 +5,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y -q \
     mosquitto \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-# RUN mkdir /etc/mosquitto/conf.d
 
 COPY mosquitto.conf /etc/mosquitto
 COPY server.conf /etc/mosquitto/conf.d/server.conf
