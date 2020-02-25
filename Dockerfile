@@ -1,9 +1,11 @@
-FROM alpine:3.10.3
+FROM ubuntu:rolling
 MAINTAINER Sebastian Braun <sebastian.braun@fh-aachen.de>
-# base alpine template
 
-RUN apk add --no-cache mosquitto
-RUN mkdir /etc/mosquitto/conf.d
+RUN apt-get update && apt-get install --no-install-recommends -y -q \
+    mosquitto \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+# RUN mkdir /etc/mosquitto/conf.d
 
 COPY mosquitto.conf /etc/mosquitto
 COPY server.conf /etc/mosquitto/conf.d/server.conf
