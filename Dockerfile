@@ -9,7 +9,8 @@ ENV LANG en_US.UTF-8
 RUN apt-get update && apt-get install --no-install-recommends -y -q \
     mosquitto \
  && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* \
+ && chmod 777 /var/run/mosquitto
 
 COPY mosquitto.conf /etc/mosquitto
 COPY server.conf /etc/mosquitto/conf.d/server.conf
